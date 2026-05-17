@@ -1,0 +1,7 @@
+id: aider
+name: Aider
+category: cli
+automation: automated
+openaiCompatible: true
+website: https://aider.chat/
+summary: Pair-programming CLI harness with a long-running code editing benchmark culture.

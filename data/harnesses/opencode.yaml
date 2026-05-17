@@ -1,0 +1,7 @@
+id: opencode
+name: OpenCode
+category: cli
+automation: automated
+openaiCompatible: true
+website: https://opencode.ai/
+summary: Terminal coding agent with a provider-driven model configuration surface.

@@ -1,0 +1,5 @@
+id: deepseek-v4
+name: DeepSeek V4
+provider: DeepSeek
+family: DeepSeek
+providerModelId: deepseek-v4

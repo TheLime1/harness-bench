@@ -1,0 +1,29 @@
+submittedAt: 2026-05-01T12:00:00.000Z
+submittedBy: harness-bench-maintainers
+trustTier: maintainer_verified
+harness:
+  id: codex-cli
+  version: 0.58.0
+  config: Harbor installed agent with default terminal sandbox settings.
+model:
+  id: gpt-5.5
+  providerModelId: gpt-5.5
+  intelligenceLevel: xhigh
+benchmark:
+  id: terminal-bench
+  version: "2.1"
+  split: terminal-bench-2-1
+metrics:
+  score: 0.834
+  stderr: 0.022
+  taskCount: 200
+  costUsd: 211.40
+  wallTimeMinutes: 455
+  totalTokens: 18400000
+execution:
+  mode: automated
+  command: harbor run -d terminal-bench/terminal-bench-2-1 -a codex-cli -m gpt-5.5 -k 5
+artifacts:
+  url: https://www.tbench.ai/leaderboard/terminal-bench/2.1
+  logs: https://www.tbench.ai/leaderboard/terminal-bench/2.1
+notes: Seeded from the public Terminal-Bench 2.1 leaderboard entry described in the project plan.

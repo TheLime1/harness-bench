@@ -1,0 +1,7 @@
+id: terminal-bench
+name: Terminal-Bench
+version: "2.1"
+suite: coding-agent
+metricLabel: Accuracy
+website: https://www.tbench.ai/leaderboard/terminal-bench/2.1
+description: Real terminal task benchmark for autonomous coding and operations agents.

@@ -1,0 +1,7 @@
+id: swe-bench-verified
+name: SWE-bench Verified
+version: "2026-05"
+suite: coding-agent
+metricLabel: Resolved
+website: https://www.swebench.com/
+description: Human-validated GitHub issue resolution benchmark for software engineering agents.

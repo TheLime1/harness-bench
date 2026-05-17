@@ -1,0 +1,307 @@
+{
+  "generatedAt": "2026-05-02T12:00:00.000Z",
+  "harnesses": [
+    {
+      "id": "aider",
+      "name": "Aider",
+      "category": "cli",
+      "automation": "automated",
+      "openaiCompatible": true,
+      "website": "https://aider.chat/",
+      "summary": "Pair-programming CLI harness with a long-running code editing benchmark culture."
+    },
+    {
+      "id": "cline",
+      "name": "Cline",
+      "category": "editor-extension",
+      "automation": "manual",
+      "openaiCompatible": true,
+      "website": "https://cline.bot/",
+      "summary": "VS Code agent extension that can operate on files, commands, and browser tasks."
+    },
+    {
+      "id": "codex-cli",
+      "name": "Codex CLI",
+      "category": "cli",
+      "automation": "automated",
+      "openaiCompatible": true,
+      "website": "https://developers.openai.com/codex/",
+      "summary": "Terminal coding agent suited for scripted benchmark runners and artifact capture."
+    },
+    {
+      "id": "continue",
+      "name": "Continue",
+      "category": "editor-extension",
+      "automation": "manual",
+      "openaiCompatible": true,
+      "website": "https://www.continue.dev/",
+      "summary": "Open-source IDE assistant that supports configurable model providers and workflows."
+    },
+    {
+      "id": "opencode",
+      "name": "OpenCode",
+      "category": "cli",
+      "automation": "automated",
+      "openaiCompatible": true,
+      "website": "https://opencode.ai/",
+      "summary": "Terminal coding agent with a provider-driven model configuration surface."
+    },
+    {
+      "id": "openhands",
+      "name": "OpenHands",
+      "category": "framework",
+      "automation": "automated",
+      "openaiCompatible": true,
+      "website": "https://www.all-hands.dev/",
+      "summary": "Open agent framework with scripted evaluation workflows for software engineering tasks."
+    },
+    {
+      "id": "roo-code",
+      "name": "Roo Code",
+      "category": "editor-extension",
+      "automation": "manual",
+      "openaiCompatible": true,
+      "website": "https://roocode.com/",
+      "summary": "VS Code coding agent focused on multi-provider interactive development workflows."
+    },
+    {
+      "id": "zed",
+      "name": "Zed",
+      "category": "ide",
+      "automation": "manual",
+      "openaiCompatible": true,
+      "website": "https://zed.dev/",
+      "summary": "Native editor with an agent panel and support for external coding agents."
+    }
+  ],
+  "models": [
+    {
+      "id": "claude-opus-4.7",
+      "name": "Claude Opus 4.7",
+      "provider": "Anthropic",
+      "family": "Claude",
+      "providerModelId": "claude-opus-4.7"
+    },
+    {
+      "id": "deepseek-v4",
+      "name": "DeepSeek V4",
+      "provider": "DeepSeek",
+      "family": "DeepSeek",
+      "providerModelId": "deepseek-v4"
+    },
+    {
+      "id": "glm-4.7",
+      "name": "GLM-4.7",
+      "provider": "Z.ai",
+      "family": "GLM",
+      "providerModelId": "glm-4.7"
+    },
+    {
+      "id": "gpt-5.2",
+      "name": "GPT-5.2",
+      "provider": "OpenAI",
+      "family": "GPT",
+      "providerModelId": "gpt-5.2"
+    },
+    {
+      "id": "gpt-5.5",
+      "name": "GPT-5.5",
+      "provider": "OpenAI",
+      "family": "GPT",
+      "providerModelId": "gpt-5.5"
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "aider-polyglot",
+      "name": "Aider Polyglot",
+      "version": "2026-05",
+      "suite": "coding-agent",
+      "metricLabel": "Pass rate",
+      "website": "https://github.com/Aider-AI/polyglot-benchmark",
+      "description": "Multi-language code editing tasks adapted from Exercism language tracks."
+    },
+    {
+      "id": "swe-bench-verified",
+      "name": "SWE-bench Verified",
+      "version": "2026-05",
+      "suite": "coding-agent",
+      "metricLabel": "Resolved",
+      "website": "https://www.swebench.com/",
+      "description": "Human-validated GitHub issue resolution benchmark for software engineering agents."
+    },
+    {
+      "id": "terminal-bench",
+      "name": "Terminal-Bench",
+      "version": "2.1",
+      "suite": "coding-agent",
+      "metricLabel": "Accuracy",
+      "website": "https://www.tbench.ai/leaderboard/terminal-bench/2.1",
+      "description": "Real terminal task benchmark for autonomous coding and operations agents."
+    }
+  ],
+  "runs": [
+    {
+      "id": "aider-polyglot__2026-05__aider__gpt-5.2__2026-04-18",
+      "submittedAt": "2026-04-18T12:00:00.000Z",
+      "submittedBy": "harness-bench-fixture",
+      "trustTier": "artifact_complete",
+      "harness": {
+        "id": "aider",
+        "version": "0.86.0",
+        "config": "Polyglot benchmark harness with default edit format and published transcript bundle."
+      },
+      "model": {
+        "id": "gpt-5.2",
+        "providerModelId": "gpt-5.2",
+        "intelligenceLevel": "high"
+      },
+      "benchmark": {
+        "id": "aider-polyglot",
+        "version": "2026-05",
+        "split": "polyglot-main"
+      },
+      "metrics": {
+        "score": 0.88,
+        "stderr": 0.015,
+        "taskCount": 225,
+        "costUsd": 96.6,
+        "wallTimeMinutes": 260,
+        "totalTokens": 9500000
+      },
+      "execution": {
+        "mode": "automated",
+        "command": "aider-benchmark --suite polyglot --model gpt-5.2 --archive artifacts/aider-gpt52"
+      },
+      "artifacts": {
+        "url": "https://github.com/example/harness-bench/releases/tag/aider-gpt52-polyglot-sample",
+        "logs": "https://github.com/example/harness-bench/releases/tag/aider-gpt52-polyglot-sample",
+        "predictions": "https://github.com/example/harness-bench/releases/tag/aider-gpt52-polyglot-sample"
+      },
+      "notes": "Sample code-editing run for chart and leaderboard coverage."
+    },
+    {
+      "id": "terminal-bench__2.1__codex-cli__gpt-5.5__2026-05-01",
+      "submittedAt": "2026-05-01T12:00:00.000Z",
+      "submittedBy": "harness-bench-maintainers",
+      "trustTier": "maintainer_verified",
+      "harness": {
+        "id": "codex-cli",
+        "version": "0.58.0",
+        "config": "Harbor installed agent with default terminal sandbox settings."
+      },
+      "model": {
+        "id": "gpt-5.5",
+        "providerModelId": "gpt-5.5",
+        "intelligenceLevel": "xhigh"
+      },
+      "benchmark": {
+        "id": "terminal-bench",
+        "version": "2.1",
+        "split": "terminal-bench-2-1"
+      },
+      "metrics": {
+        "score": 0.834,
+        "stderr": 0.022,
+        "taskCount": 200,
+        "costUsd": 211.4,
+        "wallTimeMinutes": 455,
+        "totalTokens": 18400000
+      },
+      "execution": {
+        "mode": "automated",
+        "command": "harbor run -d terminal-bench/terminal-bench-2-1 -a codex-cli -m gpt-5.5 -k 5"
+      },
+      "artifacts": {
+        "url": "https://www.tbench.ai/leaderboard/terminal-bench/2.1",
+        "logs": "https://www.tbench.ai/leaderboard/terminal-bench/2.1"
+      },
+      "notes": "Seeded from the public Terminal-Bench 2.1 leaderboard entry described in the project plan."
+    },
+    {
+      "id": "terminal-bench__2.1__zed__gpt-5.5__2026-05-02",
+      "submittedAt": "2026-05-02T12:00:00.000Z",
+      "submittedBy": "harness-bench-fixture",
+      "trustTier": "self_reported",
+      "harness": {
+        "id": "zed",
+        "version": "0.186.0",
+        "config": "Manual Zed Agent Panel protocol with artifact bundle required."
+      },
+      "model": {
+        "id": "gpt-5.5",
+        "providerModelId": "gpt-5.5",
+        "intelligenceLevel": "low"
+      },
+      "benchmark": {
+        "id": "terminal-bench",
+        "version": "2.1",
+        "split": "terminal-bench-2-1-manual-sample"
+      },
+      "metrics": {
+        "score": 0.72,
+        "stderr": 0.03,
+        "taskCount": 60,
+        "costUsd": 140.25,
+        "wallTimeMinutes": 320,
+        "totalTokens": 11200000
+      },
+      "execution": {
+        "mode": "manual",
+        "protocol": "Open each task in Zed Agent Panel, run the task prompt unchanged, export workspace diffs, terminal transcript, and final answer into the artifact bundle."
+      },
+      "artifacts": {
+        "url": "https://github.com/example/harness-bench/releases/tag/zed-gpt55-sample",
+        "logs": "https://github.com/example/harness-bench/releases/tag/zed-gpt55-sample"
+      },
+      "notes": "Sample manual IDE submission used to exercise contribution and trust-tier flows."
+    },
+    {
+      "id": "swe-bench-verified__2026-05__openhands__gpt-5.2__2026-04-20",
+      "submittedAt": "2026-04-20T12:00:00.000Z",
+      "submittedBy": "harness-bench-fixture",
+      "trustTier": "artifact_complete",
+      "harness": {
+        "id": "openhands",
+        "version": "0.54.0",
+        "config": "Containerized SWE-bench runner with published patches and trajectories."
+      },
+      "model": {
+        "id": "gpt-5.2",
+        "providerModelId": "gpt-5.2",
+        "intelligenceLevel": "high"
+      },
+      "benchmark": {
+        "id": "swe-bench-verified",
+        "version": "2026-05",
+        "split": "verified"
+      },
+      "metrics": {
+        "score": 0.612,
+        "stderr": 0.018,
+        "taskCount": 500,
+        "costUsd": 480,
+        "wallTimeMinutes": 1180,
+        "totalTokens": 41200000
+      },
+      "execution": {
+        "mode": "automated",
+        "command": "openhands-eval --benchmark swe-bench-verified --model gpt-5.2 --output artifacts/openhands-gpt52"
+      },
+      "artifacts": {
+        "url": "https://github.com/example/harness-bench/releases/tag/openhands-gpt52-swebench-sample",
+        "logs": "https://github.com/example/harness-bench/releases/tag/openhands-gpt52-swebench-sample",
+        "trajectories": "https://github.com/example/harness-bench/releases/tag/openhands-gpt52-swebench-sample",
+        "predictions": "https://github.com/example/harness-bench/releases/tag/openhands-gpt52-swebench-sample"
+      },
+      "notes": "Sample artifact-complete run for schema and UI coverage."
+    }
+  ],
+  "summary": {
+    "runCount": 4,
+    "verifiedRunCount": 1,
+    "harnessCount": 8,
+    "modelCount": 5,
+    "benchmarkCount": 3
+  }
+}

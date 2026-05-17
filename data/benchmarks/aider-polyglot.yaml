@@ -1,0 +1,7 @@
+id: aider-polyglot
+name: Aider Polyglot
+version: "2026-05"
+suite: coding-agent
+metricLabel: Pass rate
+website: https://github.com/Aider-AI/polyglot-benchmark
+description: Multi-language code editing tasks adapted from Exercism language tracks.

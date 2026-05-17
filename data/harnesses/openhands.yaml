@@ -1,0 +1,7 @@
+id: openhands
+name: OpenHands
+category: framework
+automation: automated
+openaiCompatible: true
+website: https://www.all-hands.dev/
+summary: Open agent framework with scripted evaluation workflows for software engineering tasks.
