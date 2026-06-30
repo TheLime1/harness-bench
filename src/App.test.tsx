@@ -1,39 +1,30 @@
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import App from "./App";
 
 describe("App", () => {
-  it("renders the seeded leaderboard and filters to verified runs", async () => {
+  it("renders the title, leaderboard, and footer", () => {
     render(<App />);
 
     expect(
       screen.getByRole("heading", { name: "Harness-Bench" }),
     ).toBeInTheDocument();
-    expect(screen.queryByLabelText("Repository summary")).not.toBeInTheDocument();
-    const initialLeaderboard = screen.getByRole("table", { name: "Leaderboard" });
-    expect(within(initialLeaderboard).getByText("Codex CLI")).toBeInTheDocument();
-    expect(within(initialLeaderboard).getByText("Zed")).toBeInTheDocument();
-    expect(within(initialLeaderboard).getByText("xhigh")).toBeInTheDocument();
-
-    fireEvent.change(screen.getByLabelText("Verification"), {
-      target: { value: "maintainer_verified" },
-    });
+    expect(
+      screen.getByRole("heading", { name: "Contribute a result" }),
+    ).toBeInTheDocument();
 
     const leaderboard = screen.getByRole("table", { name: "Leaderboard" });
     expect(within(leaderboard).getByText("Codex CLI")).toBeInTheDocument();
-    expect(within(leaderboard).queryByText("Zed")).not.toBeInTheDocument();
+    expect(within(leaderboard).getByText("Zed")).toBeInTheDocument();
+    expect(within(leaderboard).getByText("xhigh")).toBeInTheDocument();
   });
 
-  it("filters by intelligence level", () => {
+  it("removes the old filters, charts, and run details panel", () => {
     render(<App />);
 
-    fireEvent.change(screen.getByLabelText("Intelligence"), {
-      target: { value: "xhigh" },
-    });
-
-    const leaderboard = screen.getByRole("table", { name: "Leaderboard" });
-    expect(within(leaderboard).getByText("Codex CLI")).toBeInTheDocument();
-    expect(within(leaderboard).queryByText("OpenHands")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("Leaderboard filters")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("Charts")).not.toBeInTheDocument();
+    expect(screen.queryByText("Run details")).not.toBeInTheDocument();
   });
 });
