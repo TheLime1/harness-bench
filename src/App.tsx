@@ -1,13 +1,19 @@
-import { useMemo } from "react";
+import { type ChangeEvent, useMemo, useState } from "react";
 
 import siteDataJson from "./generated/site-data.json";
 import {
   buildLeaderboardRows,
+  filterRuns,
   formatCurrency,
   formatMinutes,
   formatPercent,
 } from "./lib/leaderboard";
-import type { SiteData, TrustTier } from "./lib/types";
+import type {
+  IntelligenceLevel,
+  LeaderboardFilters,
+  SiteData,
+  TrustTier,
+} from "./lib/types";
 
 const siteData = siteDataJson as SiteData;
 
@@ -17,11 +23,78 @@ const trustLabels: Record<TrustTier, string> = {
   maintainer_verified: "Maintainer verified",
 };
 
+const intelligenceOrder: IntelligenceLevel[] = [
+  "none",
+  "minimal",
+  "low",
+  "medium",
+  "high",
+  "xhigh",
+];
+
+const initialFilters: LeaderboardFilters = {
+  trustTier: "all",
+  harnessId: "all",
+  modelId: "all",
+  benchmarkId: "all",
+  intelligenceLevel: "all",
+  search: "",
+};
+
 function App() {
   const rows = useMemo(() => buildLeaderboardRows(siteData), []);
+  const [filters, setFilters] = useState<LeaderboardFilters>(initialFilters);
+  const filteredRows = useMemo(() => filterRuns(rows, filters), [filters, rows]);
+
+  const harnessOptions = useMemo(
+    () =>
+      Array.from(
+        new Map(
+          rows.map((row) => [
+            row.harnessId,
+            { id: row.harnessId, label: row.harnessName },
+          ]),
+        ).values(),
+      ).sort((a, b) => a.label.localeCompare(b.label)),
+    [rows],
+  );
+
+  const modelOptions = useMemo(
+    () =>
+      Array.from(
+        new Map(
+          rows.map((row) => [
+            row.modelId,
+            { id: row.modelId, label: row.modelName, provider: row.modelProvider },
+          ]),
+        ).values(),
+      ).sort((a, b) => a.label.localeCompare(b.label)),
+    [rows],
+  );
+
+  const intelligenceOptions = useMemo(
+    () =>
+      intelligenceOrder.filter((level) =>
+        rows.some((row) => row.intelligenceLevel === level),
+      ),
+    [rows],
+  );
+
+  const updateFilter =
+    <Key extends "harnessId" | "modelId" | "intelligenceLevel">(key: Key) =>
+    (event: ChangeEvent<HTMLSelectElement>) => {
+      setFilters((currentFilters) => ({
+        ...currentFilters,
+        [key]: event.target.value as LeaderboardFilters[Key],
+      }));
+    };
 
   return (
-    <main className="app-shell">
+    <>
+      <div className="mock-data-banner" role="status">
+        THIS IS A MOCK DATA
+      </div>
+      <main className="app-shell">
       <header className="page-title" aria-labelledby="page-title">
         <h1 id="page-title">Harness-Bench</h1>
         <p>
@@ -35,9 +108,52 @@ function App() {
           <div className="section-heading">
             <div>
               <h2>Leaderboard</h2>
-              <p>{rows.length} submissions</p>
+              <p>
+                {filteredRows.length} of {rows.length} submissions
+              </p>
             </div>
           </div>
+          <form className="leaderboard-filters" aria-label="Leaderboard filters">
+            <label>
+              <span>Model</span>
+              <select value={filters.modelId} onChange={updateFilter("modelId")}>
+                <option value="all">All models</option>
+                {modelOptions.map((model) => (
+                  <option key={model.id} value={model.id}>
+                    {model.label} · {model.provider}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              <span>Harness</span>
+              <select
+                value={filters.harnessId}
+                onChange={updateFilter("harnessId")}
+              >
+                <option value="all">All harnesses</option>
+                {harnessOptions.map((harness) => (
+                  <option key={harness.id} value={harness.id}>
+                    {harness.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              <span>Intelligence</span>
+              <select
+                value={filters.intelligenceLevel}
+                onChange={updateFilter("intelligenceLevel")}
+              >
+                <option value="all">All levels</option>
+                {intelligenceOptions.map((level) => (
+                  <option key={level} value={level}>
+                    {level}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </form>
           <div className="table-scroll">
             <table aria-label="Leaderboard">
               <thead>
@@ -55,7 +171,7 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                {rows.map((row, index) => (
+                {filteredRows.map((row, index) => (
                   <tr key={row.runId}>
                     <td className="rank-cell">#{index + 1}</td>
                     <td>
@@ -87,12 +203,19 @@ function App() {
                       </span>
                     </td>
                     <td>
-                      <a className="artifact-link" href={row.artifactsUrl} target="_blank" rel="noreferrer">
-                        Open
-                      </a>
+                      <span className="artifact-status">
+                        {row.artifactsUrl ? "Listed" : "Missing"}
+                      </span>
                     </td>
                   </tr>
                 ))}
+                {filteredRows.length === 0 ? (
+                  <tr>
+                    <td className="empty-cell" colSpan={10}>
+                      No submissions match these filters.
+                    </td>
+                  </tr>
+                ) : null}
               </tbody>
             </table>
           </div>
@@ -111,7 +234,8 @@ function App() {
           Contribution guide
         </a>
       </footer>
-    </main>
+      </main>
+    </>
   );
 }
 

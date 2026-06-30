@@ -32,6 +32,23 @@ a {
   color: inherit;
 }
 
+.mock-data-banner {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 8px clamp(16px, 3vw, 44px);
+  color: #5f4300;
+  background: #fff4c7;
+  border-bottom: 1px solid #dfc46b;
+  font-size: 13px;
+  font-weight: 900;
+  text-align: center;
+}
+
 .app-shell {
   width: 100%;
   min-height: 100vh;
@@ -95,6 +112,42 @@ a {
 .site-footer p {
   margin: 4px 0 0;
   color: var(--muted);
+}
+
+.leaderboard-filters {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.leaderboard-filters label {
+  display: grid;
+  gap: 6px;
+}
+
+.leaderboard-filters label span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.leaderboard-filters select {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 36px 0 12px;
+  color: var(--ink);
+  background: var(--field);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font: inherit;
+}
+
+.leaderboard-filters select:focus-visible {
+  outline: 3px solid rgba(8, 112, 92, 0.22);
+  outline-offset: 2px;
+  border-color: var(--teal-dark);
 }
 
 .table-scroll {
@@ -182,21 +235,25 @@ td span {
   background: #fff0d8;
 }
 
-.artifact-link {
+.artifact-status {
   display: inline-flex;
   align-items: center;
-  min-height: 34px;
-  padding: 0 12px;
-  color: #fff;
-  background: var(--ink);
-  border-radius: 8px;
+  width: fit-content;
+  min-height: 27px;
+  margin-top: 0;
+  padding: 4px 9px;
+  color: var(--muted);
+  background: var(--field);
+  border: 1px solid var(--line);
+  border-radius: 999px;
   font-size: 13px;
   font-weight: 800;
-  text-decoration: none;
 }
 
-.artifact-link:hover {
-  background: #263934;
+.empty-cell {
+  padding: 28px 12px;
+  color: var(--muted);
+  text-align: center;
 }
 
 .site-footer {
@@ -259,6 +316,10 @@ td span {
   .site-footer {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .leaderboard-filters {
+    grid-template-columns: 1fr;
   }
 
   table {
@@ -336,5 +397,15 @@ td span {
 
   td:nth-child(10)::before {
     content: "Artifacts";
+  }
+
+  .empty-cell {
+    display: block;
+    padding: 18px 0;
+    text-align: left;
+  }
+
+  .empty-cell::before {
+    content: none;
   }
 }
