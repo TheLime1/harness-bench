@@ -1,0 +1,7 @@
+id: continue
+name: Continue
+category: editor-extension
+automation: manual
+openaiCompatible: true
+website: https://www.continue.dev/
+summary: Open-source IDE assistant that supports configurable model providers and workflows.

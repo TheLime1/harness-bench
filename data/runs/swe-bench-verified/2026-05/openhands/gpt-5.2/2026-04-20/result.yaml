@@ -1,0 +1,31 @@
+submittedAt: 2026-04-20T12:00:00.000Z
+submittedBy: harness-bench-fixture
+trustTier: artifact_complete
+harness:
+  id: openhands
+  version: 0.54.0
+  config: Containerized SWE-bench runner with published patches and trajectories.
+model:
+  id: gpt-5.2
+  providerModelId: gpt-5.2
+  intelligenceLevel: high
+benchmark:
+  id: swe-bench-verified
+  version: "2026-05"
+  split: verified
+metrics:
+  score: 0.612
+  stderr: 0.018
+  taskCount: 500
+  costUsd: 480.00
+  wallTimeMinutes: 1180
+  totalTokens: 41200000
+execution:
+  mode: automated
+  command: openhands-eval --benchmark swe-bench-verified --model gpt-5.2 --output artifacts/openhands-gpt52
+artifacts:
+  url: https://github.com/example/harness-bench/releases/tag/openhands-gpt52-swebench-sample
+  logs: https://github.com/example/harness-bench/releases/tag/openhands-gpt52-swebench-sample
+  trajectories: https://github.com/example/harness-bench/releases/tag/openhands-gpt52-swebench-sample
+  predictions: https://github.com/example/harness-bench/releases/tag/openhands-gpt52-swebench-sample
+notes: Sample artifact-complete run for schema and UI coverage.

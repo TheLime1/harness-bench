@@ -1,0 +1,5 @@
+id: gpt-5.5
+name: GPT-5.5
+provider: OpenAI
+family: GPT
+providerModelId: gpt-5.5

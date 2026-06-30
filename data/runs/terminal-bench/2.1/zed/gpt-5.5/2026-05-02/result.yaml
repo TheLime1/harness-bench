@@ -1,0 +1,29 @@
+submittedAt: 2026-05-02T12:00:00.000Z
+submittedBy: harness-bench-fixture
+trustTier: self_reported
+harness:
+  id: zed
+  version: 0.186.0
+  config: Manual Zed Agent Panel protocol with artifact bundle required.
+model:
+  id: gpt-5.5
+  providerModelId: gpt-5.5
+  intelligenceLevel: low
+benchmark:
+  id: terminal-bench
+  version: "2.1"
+  split: terminal-bench-2-1-manual-sample
+metrics:
+  score: 0.720
+  stderr: 0.030
+  taskCount: 60
+  costUsd: 140.25
+  wallTimeMinutes: 320
+  totalTokens: 11200000
+execution:
+  mode: manual
+  protocol: Open each task in Zed Agent Panel, run the task prompt unchanged, export workspace diffs, terminal transcript, and final answer into the artifact bundle.
+artifacts:
+  url: https://github.com/example/harness-bench/releases/tag/zed-gpt55-sample
+  logs: https://github.com/example/harness-bench/releases/tag/zed-gpt55-sample
+notes: Sample manual IDE submission used to exercise contribution and trust-tier flows.

@@ -1,0 +1,7 @@
+id: roo-code
+name: Roo Code
+category: editor-extension
+automation: manual
+openaiCompatible: true
+website: https://roocode.com/
+summary: VS Code coding agent focused on multi-provider interactive development workflows.

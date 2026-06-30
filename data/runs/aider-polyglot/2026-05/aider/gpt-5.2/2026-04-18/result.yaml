@@ -1,0 +1,30 @@
+submittedAt: 2026-04-18T12:00:00.000Z
+submittedBy: harness-bench-fixture
+trustTier: artifact_complete
+harness:
+  id: aider
+  version: 0.86.0
+  config: Polyglot benchmark harness with default edit format and published transcript bundle.
+model:
+  id: gpt-5.2
+  providerModelId: gpt-5.2
+  intelligenceLevel: high
+benchmark:
+  id: aider-polyglot
+  version: "2026-05"
+  split: polyglot-main
+metrics:
+  score: 0.880
+  stderr: 0.015
+  taskCount: 225
+  costUsd: 96.60
+  wallTimeMinutes: 260
+  totalTokens: 9500000
+execution:
+  mode: automated
+  command: aider-benchmark --suite polyglot --model gpt-5.2 --archive artifacts/aider-gpt52
+artifacts:
+  url: https://github.com/example/harness-bench/releases/tag/aider-gpt52-polyglot-sample
+  logs: https://github.com/example/harness-bench/releases/tag/aider-gpt52-polyglot-sample
+  predictions: https://github.com/example/harness-bench/releases/tag/aider-gpt52-polyglot-sample
+notes: Sample code-editing run for chart and leaderboard coverage.

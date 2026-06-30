@@ -1,0 +1,7 @@
+id: zed
+name: Zed
+category: ide
+automation: manual
+openaiCompatible: true
+website: https://zed.dev/
+summary: Native editor with an agent panel and support for external coding agents.

@@ -1,0 +1,7 @@
+id: codex-cli
+name: Codex CLI
+category: cli
+automation: automated
+openaiCompatible: true
+website: https://developers.openai.com/codex/
+summary: Terminal coding agent suited for scripted benchmark runners and artifact capture.

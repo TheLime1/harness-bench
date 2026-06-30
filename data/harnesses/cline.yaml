@@ -1,0 +1,7 @@
+id: cline
+name: Cline
+category: editor-extension
+automation: manual
+openaiCompatible: true
+website: https://cline.bot/
+summary: VS Code agent extension that can operate on files, commands, and browser tasks.
