@@ -1,5 +1,6 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
+import siteData from "./generated/site-data.json";
 
 import App from "./App";
 
@@ -16,9 +17,9 @@ describe("App", () => {
     ).toBeInTheDocument();
 
     const leaderboard = screen.getByRole("table", { name: "Leaderboard" });
-    expect(within(leaderboard).getByText("Codex CLI")).toBeInTheDocument();
-    expect(within(leaderboard).getByText("Zed")).toBeInTheDocument();
-    expect(within(leaderboard).getByText("xhigh")).toBeInTheDocument();
+    expect(within(leaderboard).getAllByText("Codex CLI").length).toBeGreaterThan(0);
+    expect(within(leaderboard).getAllByText("Zed").length).toBeGreaterThan(0);
+    expect(within(leaderboard).getAllByText("xhigh").length).toBeGreaterThan(0);
   });
 
   it("filters the leaderboard by model, harness, and intelligence", () => {
@@ -56,7 +57,7 @@ describe("App", () => {
     render(<App />);
 
     expect(screen.queryByRole("link", { name: "Open" })).not.toBeInTheDocument();
-    expect(screen.getAllByText("Listed")).toHaveLength(4);
+    expect(screen.getAllByText("Listed")).toHaveLength(siteData.runs.length);
     expect(screen.queryByLabelText("Charts")).not.toBeInTheDocument();
     expect(screen.queryByText("Run details")).not.toBeInTheDocument();
   });

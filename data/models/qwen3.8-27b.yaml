@@ -1,0 +1,5 @@
+id: qwen3.8-27b
+name: Qwen3.8-27B
+provider: Qwen
+family: Qwen
+providerModelId: Qwen/Qwen3.8-27B

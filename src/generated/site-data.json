@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-02T12:00:00.000Z",
+  "generatedAt": "2026-10-04T03:00:00.000Z",
   "harnesses": [
     {
       "id": "aider",
@@ -109,6 +109,13 @@
       "provider": "OpenAI",
       "family": "GPT",
       "providerModelId": "gpt-5.5"
+    },
+    {
+      "id": "qwen3.8-27b",
+      "name": "Qwen3.8-27B",
+      "provider": "Qwen",
+      "family": "Qwen",
+      "providerModelId": "Qwen/Qwen3.8-27B"
     }
   ],
   "benchmarks": [
@@ -295,13 +302,81 @@
         "predictions": "https://github.com/example/harness-bench/releases/tag/openhands-gpt52-swebench-sample"
       },
       "notes": "Sample artifact-complete run for schema and UI coverage."
+    },
+    {
+      "id": "terminal-bench__2.1__opencode__qwen3.8-27b__2026-10-04",
+      "submittedAt": "2026-10-04T03:00:00.000Z",
+      "submittedBy": "SlipsKnuten",
+      "trustTier": "self_reported",
+      "harness": {
+        "id": "opencode",
+        "version": "1.17.14",
+        "config": "Harbor opencode agent; provider = local OpenAI-compatible llama.cpp server; permission external_directory allow."
+      },
+      "model": {
+        "id": "qwen3.8-27b",
+        "providerModelId": "unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL",
+        "intelligenceLevel": "medium"
+      },
+      "benchmark": {
+        "id": "terminal-bench",
+        "version": "2.1",
+        "split": "terminal-bench-2-1"
+      },
+      "metrics": {
+        "score": 0.607,
+        "taskCount": 89,
+        "costUsd": 0
+      },
+      "execution": {
+        "mode": "automated",
+        "command": "harbor run -p terminal-bench-2-1 -i <task> -a opencode -m local/local -n 1 (one task at a time, see run-alt.sh)"
+      },
+      "artifacts": {
+        "url": "https://github.com/SlipsKnuten/local-harness-results/tree/main/results/terminal-bench-2.1/sequential"
+      },
+      "notes": "54/89 solved; 20 wrong, 12 time limit, 1 agent crash, 2 not run. Local single-GPU run: RTX 5090 32 GB, llama.cpp 2145525a4 (CUDA 13.2) serving unsloth Qwen3.8-27B UD-Q4_K_XL with lossless speculative decoding (ngram-mod + DFlash2 draft), 262k context, q8_0 KV, sampling temp 1.0 / top-p 0.95 / top-k 20, reasoning effort medium. One server slot, one task at a time; opencode and Codex alternated on the same tasks in a fixed random order (seed 42). Harbor 0.23.0 with harness defaults (no instruction files). 2 tasks (qemu-startup, qemu-alpine-ssh) could not run because the agent install needs Node.js and the task image's apt fails; counted as failures. Per-task outcomes and scripts in the artifact repo; full trajectories not published (they contain a throwaway server key)."
+    },
+    {
+      "id": "terminal-bench__2.1__codex-cli__qwen3.8-27b__2026-10-04",
+      "submittedAt": "2026-10-04T03:00:00.000Z",
+      "submittedBy": "SlipsKnuten",
+      "trustTier": "self_reported",
+      "harness": {
+        "id": "codex-cli",
+        "version": "0.159.2",
+        "config": "Harbor codex agent; custom model_provider (wire_api responses) pointing at the local llama.cpp server."
+      },
+      "model": {
+        "id": "qwen3.8-27b",
+        "providerModelId": "unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL",
+        "intelligenceLevel": "medium"
+      },
+      "benchmark": {
+        "id": "terminal-bench",
+        "version": "2.1",
+        "split": "terminal-bench-2-1"
+      },
+      "metrics": {
+        "score": 0.573,
+        "taskCount": 89,
+        "costUsd": 0
+      },
+      "execution": {
+        "mode": "automated",
+        "command": "harbor run -p terminal-bench-2-1 -i <task> -a codex -m local -n 1 (one task at a time, see run-alt.sh)"
+      },
+      "artifacts": {
+        "url": "https://github.com/SlipsKnuten/local-harness-results/tree/main/results/terminal-bench-2.1/sequential"
+      },
+      "notes": "51/89 solved; 11 wrong, 15 time limit, 10 agent crashes (8 on tasks with images: the server had no vision projector, so image inputs errored and Codex aborted), 2 not run. Local single-GPU run: RTX 5090 32 GB, llama.cpp 2145525a4 (CUDA 13.2) serving unsloth Qwen3.8-27B UD-Q4_K_XL with lossless speculative decoding (ngram-mod + DFlash2 draft), 262k context, q8_0 KV, sampling temp 1.0 / top-p 0.95 / top-k 20, reasoning effort medium. One server slot, one task at a time; opencode and Codex alternated on the same tasks in a fixed random order (seed 42). Harbor 0.23.0 with harness defaults (no instruction files). 2 tasks (qemu-startup, qemu-alpine-ssh) could not run because the agent install needs Node.js and the task image's apt fails; counted as failures. Per-task outcomes and scripts in the artifact repo; full trajectories not published (they contain a throwaway server key)."
     }
   ],
   "summary": {
-    "runCount": 4,
+    "runCount": 6,
     "verifiedRunCount": 1,
     "harnessCount": 8,
-    "modelCount": 5,
+    "modelCount": 6,
     "benchmarkCount": 3
   }
 }
